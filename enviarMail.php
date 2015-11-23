@@ -8,5 +8,8 @@
 	          setText($_POST['txtMensaje'])->
 	          setHtml('<strong>'.$_POST['txtMensaje'].'</strong>');
 	$response = $sendgrid->send($message);
-	var_dump($response);
+	
+	$json = json_decode($response, true);
+	echo $json['response']['message'];
+	var_dump($json['response']['message']);
 ?>

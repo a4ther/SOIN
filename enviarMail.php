@@ -2,7 +2,7 @@
 	try {
 	    require 'vendor/autoload.php';
 		
-		echo $response;
+		echo 'Hola mundo';
 	} catch (Exception $e) {
 	    echo 'Caught exception: ',  $e->getMessage(), "\n";
 	}

@@ -1,5 +1,4 @@
 <?php
-	var_dump($_POST);
 	require 'vendor/autoload.php';
 	$sendgrid = new SendGrid('app44193749@heroku.com', 'j1mvpwjh5536');
 	

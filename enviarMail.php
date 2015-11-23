@@ -9,4 +9,5 @@
 	          setText($_POST['txtMensaje'])->
 	          setHtml('<strong>Hello World!</strong>');
 	$response = $sendgrid->send($message);
+	echo $response;
 ?>

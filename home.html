@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
+		<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+		<script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
 		<script>
 			$(function() {
 				$("#slider").responsiveSlides({
@@ -14,10 +16,51 @@
 					pager:true,
 				});
 			});
+			function navigate(id) {
+				$('html, body').animate({
+	                scrollTop: $("#" + id).offset().top
+	            }, 500);
+			}
+			jQuery(function ($) {
+			    $( "#frmContacto" ).validate({
+					rules: {
+						txtNombre: {
+							required: true,
+							lettersonly: true,
+						},
+						txtEmail: {
+							required: true,
+							email: true,
+						},
+						txtAsunto: {
+							required: true,
+						},
+						txtMensaje: {
+							required: true,
+						},
+					}
+				});
+			});
+			function validar() {
+				var validoEmail = false;
+				var email = $('#txtEmail').val();
+				var domain = email.substr(email.length - 10, email.length + 10);
+				var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				if(regex.test(email) && !(email.length > 11 && domain == 'soin.co.cr'))
+					validoEmail = regex.test(email);
+				else {
+					$('#txtEmail').removeClass('valid');
+					$('#txtEmail').addClass('error');
+				}
+					
+				return validoEmail;
+			}
 		</script>
 	</head>
 
 	<body>
+		<a style="display: inline;" href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
+		<script src="js/efecto.js"></script>
 		<div id="wrapperTop">
 			<div class="header">
 				<div class="logo">
@@ -26,22 +69,22 @@
 				<div class="menu">
 					<div class="menuContainer">
 						<div class="option">
-							<h3>
+							<h3 onclick="navigate('wrapperTop')">
 								Inicio
 							</h3>
 						</div>
 						<div class="option">
-							<h3>
-								Quiénes Somos
-							</h3>
-						</div>
-						<div class="option">
-							<h3>
+							<h3 onclick="navigate('areasNegocio')">
 								Áreas de Negocio
 							</h3>
 						</div>
 						<div class="option">
-							<h3>
+							<h3 onclick="navigate('quienesSomos')">
+								Quiénes Somos
+							</h3>
+						</div>
+						<div class="option">
+							<h3 onclick="navigate('contacto')">
 								Contacto
 							</h3>
 						</div>
@@ -51,11 +94,22 @@
 			<div class="sliderContainer">
 				<ul class="ulSlider" id="slider">
 					<li>
-						<img src="images/slider1.png" alt=""/>
+						<div class="slideTapp">
+				    		<img src="images/slider1.png" alt=""/>
+				    		<a class="btnDescargarTapp" href="https://play.google.com/store/apps/details?id=com.soin.loyalty" target="_blank">Descargar</a>
+				    		<a class="btnDescargarPlayStore" href="https://play.google.com/store/apps/details?id=com.soin.loyalty" target="_blank"><img src="images/android_descargar_normal.png"></a>
+				    		<a class="btnDescargarAppStore" href="https://itunes.apple.com/cr/app/tapp/id939725753?mt=8" target="_blank"><img src="images/mac_descargar_normal.png"></a>
+				    	</div>
 					</li>
 				    <li>
-				    	<video src="video/bi.mp4" autoplay="autoplay" loop="loop">
-				    	</video>
+				    	<div class="slideVideo">
+				    		<video src="video/bi.mp4" autoplay loop>
+				    		</video>
+				    		<div class="descripcion">
+				    			<h3>Business Intelligence</h3>
+				    			<p>Contamos con más de una década de exitosa experiencia implementando soluciones de BI maximizando la satisfacción de nuestros clientes distribuidos a lo largo de toda la región en diversos sectores y basados siempre en las últimas tecnologías BI del mercado. Nuestro crecimiento continúa gracias a la calidad y satisfacción de nuestros clientes.</p>
+				    		</div>
+				    	</div>
 			    	</li>
 				    <li>
 				    	<img src="images/slider3.png" alt=""/>
@@ -63,7 +117,7 @@
 				</ul>
 			</div>
         </div>
-        <div class="areasNegocio">
+        <div id="areasNegocio" class="areasNegocio">
         	<h1>
         		nuestras &aacute;reas de negocio
         	</h1>
@@ -79,10 +133,10 @@
         				<h3>
 	        				business intelligence
 	        			</h3>
-        				<p>
+        				<p style="padding: 0px 7%;">
 		    				Contamos con m&aacute;s de una d&eacute;cada de exitosa experiencia implementando soluciones de BI maximizando la satisfacci&oacute;n de nuestros clientes distribuidos a lo largo de toda la regi&oacute;n en diversos sectores y basados siempre en las &uacute;ltimas tecnolog&iacute;as BI del mercado. Nuestro crecimiento contin&uacute;a gracias a la calidad y satisfacci&oacute;n de nuestros clientes.
 		    			</p>
-		    			<br>
+		    			
         			</div>
         		</div>
         		<div class="area">
@@ -92,12 +146,11 @@
         			<div class="descripcion">
         				<h3>
 	        				interoperabilidad
-	        				<br>
 	        			</h3>
-	        			<p>
+	        			<p style="padding: 0px 7%;">
 	        				Plataforma que facilita la orquestaci&oacute;n de servicios entre las instituciones involucradas en sus procesos tramitol&oacute;gicos, incorporando elementos clave tales como: gestor tramitol&oacute;gico, workflows, autenticaci&oacute;n con firma digital, gestor documental, tasador y m&oacute;dulo de pagos.
 	        			</p>
-	        			<br><br><br><br>
+	        			
         			</div>
         		</div>
         		<div class="area">
@@ -106,9 +159,9 @@
 					</div>
         			<div class="descripcion">
         				<h3>
-	        				sistema de planificaci&oacute;n de recursos empresariales (erp)
+        				    planificaci&oacute;n  empresarial (erp)
 	        			</h3>
-	        			<p>
+	        			<p style="padding: 0px 7%;">
 	        				Contamos con una robusta plataforma de "back office" que integra en una arquitectura inform&aacute;tica servicios financieros, contables, presupuestarios, administraci&oacute;n del Recurso Humano y N&oacute;mina, desarrollado por expertos costarricenses con importantes casos de &eacute;xito a nivel nacional e internacional, gobierno y sector privado.
 	        			</p>
         			</div>
@@ -121,10 +174,9 @@
         				<h3>
 	        				soin telecomunicaciones
 	        			</h3>
-	        			<p>
+	        			<p style="padding: 0px 5%;">
 	        				Somos expertos en la implementaci&oacute;n, integraci&oacute;n y sostenibilidad de herramientas de clase mundial dirigidas a empresas de telecomunicaciones, que aseguren la entrega de valor en todo el ciclo del proceso.
 	        			</p>
-	        			<br><br><br><br><br><br>
         			</div>
         		</div>
         		<div class="area">
@@ -135,15 +187,14 @@
         				<h3>
 	        				soin labs
 	        			</h3>
-	        			<p>
+	        			<p style="padding: 0px 5%;">
 	        				Somos j&oacute;venes, talentosos y creativos, responsables de investigar tecnolog&iacute;as emergentes y aplicarlas en el desarrollo de productos y servicios innovadores, consolidado como el mejor equipo de desarrollo m&oacute;vil del &aacute;rea. Especialistas en proyectos a escala o proyectos Pa&iacute;s.
 	        			</p>
-	        			<br><br><br><br>
         			</div>
         		</div>
         	</div>
         </div>
-        <div class="quienesSomos">
+        <div id="quienesSomos" class="quienesSomos">
         	<img src="images/fondo.png" alt="SOIN" class="fondo">
     		<h1>
     			Somos Tecnolog&iacute;a - Somos SOIN
@@ -151,10 +202,10 @@
     		<h2>
     			SOIN es una empresa costarricense de tecnolo&iacute;a con m&aacute;s de 30 a&ntilde;os de experiencia dedicada a proveer soluciones empresariales, especialmente en verticales de ERP, Inteligencia de Negocios, Consultor&iacute;s, entre otros. Gracias a esta rca experiencia, al equipo integrado por m&aacute;s de 180 profesionales multidisciplinarios  y al compromiso en programas de investigaci&oacute;n y desarrollo, sus innovadores soluciones tecnol&oacute;gicas se encuentran soportadas en plataforma de vanguardia con caracter&iacute;stica tecnolog&iacute;a web y desarrollo bajo los m&aacute;s altos niveles de seguridad y calidad mundialmente utilizados en la industria.
     		</h2>
-    		<video src="video/spot.mp4" autoplay="autoplay" loop="loop">
+    		<video src="video/spot.mp4" autoplay loop>
     		</video>
         </div>
-        <div class="contacto">
+        <div id="contacto" class="contacto">
         	<div>
         		<img src="images/mapa.png" alt="Ubicacion" class="ubicacion">
         	</div>
@@ -177,7 +228,7 @@
         			<h3>
 	        			Contacto
 	        		</h3>
-	        		<form id="frmContacto">
+	        		<form id="frmContacto" onsubmit="return $(this).validate() && validar()">
 		        		<input id="txtNombre" name="txtNombre" type="text" placeholder="Su nombre" value=""/>
 		        		<input id="txtEmail" name="txtEmail" type="text" placeholder="Su email" value=""/>
 		        		<input id="txtAsunto" name="txtAsunto" type="text" placeholder="Asunto" value=""/>

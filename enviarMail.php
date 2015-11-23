@@ -7,6 +7,7 @@
 	$message->addTo('lsoto@soin.co.cr')->
 	          setFrom($_POST['txtEmail'])->
 	          setSubject($_POST['txtAsunto'])->
+	          setText($_POST['txtMensaje'])->
 	          setHtml('<strong>'.$_POST['txtMensaje'].'</strong>');
 	$response = $sendgrid->send($message);
 	include 'index.php';

@@ -55,6 +55,30 @@
 					
 				return validoEmail;
 			}
+			function EnviaMail() {
+				if($(this).validate() && validar()) {
+					$.ajax({
+			            type: "POST",
+			            url: "enviarMail.php",
+			            data: {
+			                txtEmail: $('#txtEmail'),
+			                txtAsunto: $('#txtAsunto'),
+			                txtMensaje: $('#txtMensaje'),
+		                },
+			            dataType: "string",
+			            success: function(response) {
+			                if(response == 1)
+			                	alert('OK');
+			                else
+			                	alert('NO');
+			            },
+			            error: function(jqXHR, textStatus, errorThrown){
+			            	alert('NO');
+			            }
+			        });
+				}
+			}
+			
 		</script>
 	</head>
 
@@ -228,13 +252,13 @@
         			<h3>
 	        			Contacto
 	        		</h3>
-	        		<form id="frmContacto" onsubmit="return $(this).validate() && validar()" action="enviarMail.php" method="post">
+	        		<!--<form id="frmContacto" onsubmit="return $(this).validate() && validar()" action="enviarMail.php" method="post">-->
 		        		<input id="txtNombre" name="txtNombre" type="text" placeholder="Su nombre" value=""/>
 		        		<input id="txtEmail" name="txtEmail" type="text" placeholder="Su email" value=""/>
 		        		<input id="txtAsunto" name="txtAsunto" type="text" placeholder="Asunto" value=""/>
 		        		<textarea id="txtMensaje" name="txtMensaje" placeholder="Mensaje"></textarea>
-		        		<input id="btnSubmit" type="submit" value="Enviar"/>
-	        		</form>
+		        		<input id="btnSubmit" type="submit" value="Enviar" onclick="EnviaMail()"/>
+	        		<!--</form>-->
         		</div>
         	</div>
         </div>

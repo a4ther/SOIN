@@ -75,6 +75,12 @@
 			            error: function(jqXHR, textStatus, errorThrown){
 			            	alert('Ha ocurrido un error al enviar su correo electronico, por favor intentelo mas tarde');
 			            }
+			            complete: function(response) {
+			                $('#txtEmail').val('');
+			                $('#txtAsunto').val('');
+			                $('#txtMensaje').val('');
+			                $('#txtNombre').val('');
+			            },
 			        });
 				}
 			}

@@ -228,7 +228,7 @@
         			<h3>
 	        			Contacto
 	        		</h3>
-	        		<form id="frmContacto" onsubmit="return $(this).validate() && validar()">
+	        		<form id="frmContacto" onsubmit="return $(this).validate() && validar()" action="enviarMail.php">
 		        		<input id="txtNombre" name="txtNombre" type="text" placeholder="Su nombre" value=""/>
 		        		<input id="txtEmail" name="txtEmail" type="text" placeholder="Su email" value=""/>
 		        		<input id="txtAsunto" name="txtAsunto" type="text" placeholder="Asunto" value=""/>

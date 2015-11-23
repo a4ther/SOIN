@@ -4,9 +4,9 @@
 	
 	$message = new SendGrid\Email();
 	$message->addTo('lsoto@soin.co.cr')->
-	          setFrom($_POST['txtEmail'])->
-	          setSubject($_POST['txtAsunto'])->
-	          setText($_POST['txtMensaje'])->
+	          setFrom('mrodriguez@soin.co.cr')->
+	          setSubject('Asunto')->
+	          setText('Hablada')->
 	          setHtml('<strong>Hello World!</strong>');
 	$response = $sendgrid->send($message);
 	echo $response;

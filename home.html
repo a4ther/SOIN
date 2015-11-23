@@ -68,12 +68,12 @@
 			            dataType: "string",
 			            success: function(response) {
 			                if(response == 1)
-			                	alert('OK');
+			                	alert('Su mensaje ha sido enviado con exito');
 			                else
-			                	alert('NO');
+			                	alert('Ha ocurrido un error al enviar su correo electronico, por favor intentelo mas tarde');
 			            },
 			            error: function(jqXHR, textStatus, errorThrown){
-			            	alert('NO');
+			            	alert('Ha ocurrido un error al enviar su correo electronico, por favor intentelo mas tarde');
 			            }
 			        });
 				}

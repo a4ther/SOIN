@@ -1,7 +1,6 @@
 <?php
 	require 'vendor/autoload.php';
 	$sendgrid = new SendGrid('app44193749@heroku.com', 'j1mvpwjh5536');
-	var_dump($_POST);
 	$message = new SendGrid\Email();
 	$message->addTo('lsoto@soin.co.cr')->
 	          setFrom($_POST['txtEmail'])->
@@ -9,5 +8,5 @@
 	          setText($_POST['txtMensaje'])->
 	          setHtml('<strong>'.$_POST['txtMensaje'].'</strong>');
 	$response = $sendgrid->send($message);
-	var_dump($response);
+	echo $response['message'];
 ?>

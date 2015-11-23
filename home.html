@@ -61,9 +61,9 @@
 			            type: "POST",
 			            url: "enviarMail.php",
 			            data: {
-			                txtEmail: $('#txtEmail'),
-			                txtAsunto: $('#txtAsunto'),
-			                txtMensaje: $('#txtMensaje'),
+			                txtEmail: $('#txtEmail').val(),
+			                txtAsunto: $('#txtAsunto').val(),
+			                txtMensaje: $('#txtMensaje').val(),
 		                },
 			            dataType: "string",
 			            success: function(response) {

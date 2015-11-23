@@ -9,8 +9,8 @@
 		          setText($_POST['txtMensaje'])->
 		          setHtml('<strong>'.$_POST['txtMensaje'].'</strong>');
 		$response = $sendgrid->send($message);
-		echo 1;
+		echo '1';
 	} catch(\SendGrid\Exception $e) {
-	    echo 0;
+	    echo '0';
 	}
 ?>
